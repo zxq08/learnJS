@@ -1,0 +1,36 @@
+弱类型特性
+"32"+32 = "3232"
+"32"-32 = 0
+
+六种数据类型（一种对象类型+五种原始类型）
+object(function,array,date) 
+number   
+string   
+boolean   
+null  
+undefined
+
+var num;
+num - 0  //转换成数字
+nun + '' //转换成字符串
+
+NAN和任何都不等，包括NAN
+new Object()是引用比较，也不全等于new Object
+null==undefined、null !== undefined
+
+var a ="string";
+str.length; //6
+str.t = 3;
+str.t; //undefined
+
+尝试以对象的形式使用基本类型"str"时，被临时转换为对应的包装类型对象，
+完成访问后会被销毁掉
+
+类型检测：
+typeof    			typeof null === "object",基础类型、function常用,null无效
+instanceof			obj instanceof Object，对象常用，基于原型链，
+								在不同的iframe和window间检测时失效
+Object.prototype.toString.apply([]/function(){}/null/undefined);
+								null和undefined无效，ie678兼容性问题
+constructor			
+duck type

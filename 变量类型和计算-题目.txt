@@ -1,0 +1,15 @@
+变量类型和计算-题目
+（1）JS中使用 typeof 能得到哪些类型
+A：所有值类型(number、boolean、string、undefined)、引用类型只能区分 object 和 function
+   ES6 新增 symbol
+（2）何时用=== 何时用==？
+A：只有 if (obj.a == null){} 这种情况用双等
+	相当于 obj.a === null || obj.a === undefined。jquery源码推荐写法
+（3）JS中有哪些内置函数
+A：Object Array Boolean String Number Function Date RegExp Error
+（4）JS变量按照存储方式分为哪些类型，描述其特点
+A：值类型和引用类型，值类型相互不影响，引用类型赋值会指向同一个对象。
+（5）如何理解JSON
+A：是JS的一个对象,也是一种数据格式。
+	常用 JSON.stringify({a:10})   Object -> JSONstring
+	     JSON.parse('{"a":10}')	 JSONstring -> object

@@ -1,0 +1,155 @@
+JavaScript数组
+值的有序集合，每个值叫元素，数字编号叫索引。
+弱类型，可以含有不同类型的元素，可以是对象或其他数组。
+	字面量形式创建数组
+	eg:
+	var arr = [1,true,null,undefined,{x:1},[1,2,3]];
+	arr[4].x   arr[5][1]
+	
+	new Array()创建数组
+	var arr = new Array();
+	var arrWithLength = new Array(100);//undefined * 100
+	var arrLikesLiteral = new Array(true,false,null,1,2,'hi');
+	new 可省略
+	
+	数组元素读写
+	var arr = [1,2,3,4,5];
+	arr.length; 
+	arr[1];
+	arr[5] = 6;
+	delete arr[0];//length不变 值变成undefined
+	
+	数组元素的增删
+	动态的，无需指定大小
+	arr.push(7);
+	arr[arr.length] = 8;
+	arr.unshift(0); //在头部添加元素0
+	arr.length -= 1;//会将最后一个元素remove掉，会改变长度
+	arr.pop(); //删除最后一个元素，会改变长度
+	arr.shift();//删除头部元素，会改变长度
+	
+	数组迭代
+	for in 不保证顺序
+	
+二维数组
+    var arr = [[0,1],[2,3],[4,5]];
+稀疏数组
+并不含有从0开始的连续索引
+一般length比实际元素个数多
+	var arr = [,,];
+	var arr1 = [undefined];
+	var arr2 = new Array(1);
+	0 in arr;//false
+	0 in arr1;//true
+	0 in arr2;//false
+	
+	arr1.length = 100;
+	arr1[99] = 123;
+	99 in arr1;//true
+	98 in arr1;//false
+	
+数组方法
+	{} => Object.prototype
+	[] => Array.prototype
+
+jion
+	var arr=[1,2,3];
+	arr.join(); //'1,2,3'
+	arr.join('_');//'1_2_3'
+	function repearString(str,n){
+		return new Array(n+1).join(str);
+	}
+	repeatString('a',3);//'aaa'
+arr.reverse(); //[3,2,1] 颠覆顺序，修改原数组
+arr.sort();//按字母顺序排序，数字会转换成字符串排序
+			   //原数组被修改
+    arr.sort(function(a,b){
+		return a-b;
+	});	//从小到大排序
+concat();//合并数组
+	var arr = [1,2,3];
+	arr.concat(4,5);//[1,2,3,4,5]
+	arr;//[1,2,3]  原数组不会修改
+	arr.concat([10,11],13);//[1,2,3,10,11,13] 展开了参数中的数组
+	arr.concat([[1,[2,3]]]);//[1,2,3,1,[2,3]] 不会展开两次
+slice();//返回部分数组,从0开始
+		  不修改原数组
+	var arr = [1,2,3,4,5];
+	arr.slice(1,3); //[2,3]    左闭右开 [1,3)
+	arr.slice(1); //[2,3,4,5]  [1,length-1]
+	arr.slice(1,-1); //[2,3,4] [1,倒数第一);
+	arr.slice(-4,-3);//[2]	   [倒数第4,倒数第3)
+splice() //拼接数组,从0开始
+		   修改原数组	
+	var arr =[1,2,3,4,5];
+	arr.splice(2); // [3,4,5]
+	arr; //[1,2]
+  splice(位置，个数，添加的新元素)
+	arr = [1,2,3,4,5];
+	arr.slice(1,1,'a','b');//[2]
+	arr; //[1,'a','b',3,4,5]
+
+ES5:（IE9+）
+forEach() //数组的遍历
+	arr.forEach(function(x,index,a){
+		x=>值，index=>索引，a=>数组本身，不变
+	});
+map();//映射
+        不改变原数组
+	arr.map(function(x){
+		return x +10;
+	});
+filter();//过滤
+		   不改变原数组
+	arr.filter(function(x,index){
+		return index % 3 === 0 || x >= 8;
+	});//[1,4,7,8,9,10]
+//判断 
+every() //全都判断成功
+ & 
+some()  //有一个判断通过
+	var arr = [1,2,3,4,5];
+	arr.every(function(x){
+		return x < 10;
+	});//true
+	arr.every(function(x){
+		return x < 3;
+	});//false
+	arr.some(function(x){
+		return x === 3;
+	});//true
+	arr.some(function(x){
+		return x === 100;
+	});//false
+reduce()
+&
+reduceRight()
+	var arr = [1,2,3];
+	var sum = arr.reduce(function(x,y){
+	//数组按序两两操作，结果作为下一次的x
+		return x + y
+	},0); //最后参数指定初始值，不指定则为数组第一个元素
+	//6
+	reduceRight是从右边开始两两操作，结果作为下一次的x
+indexOf()
+&
+lastIndexOf()
+	indexOf(被查找的元素) 没有返回-1
+	indexOf(被查找的元素,从第几个元素开始查找以0开始)
+			第二个参数若为负数则倒数第几个元素开始，都向右查
+	lastIndexOf();//从右向左查找，其他同indexOf()
+isArray() 判断是否为数组
+	Array.isArray([]); //true
+	[] instanceof Array;
+	({}).toString.apply([]) === '[object Array]';
+	[].constructor === Array;
+	
+数组自动更新length
+按索引访问数组常常比访问一般对象属性明显迅速
+数组对象继承Array.prototype上的大量数组操作方法
+string.charAt(0); 返回字符串第一个字符 类似数组
+Array.prototype.join.call(string,"_"); 字符串使用数组方法
+
+	
+	
+

@@ -1,0 +1,46 @@
+作用域和闭包-题目
+（1）说一下对变量提升的理解
+A：变量的声明和定义、以及函数的声明都会被提前。
+
+（2）说明 this 几种不同的使用场景
+A：构造函数、对象属性、普通函数、call apply bind
+
+（3）创建10个<a>标签，点击时候弹出对应序号
+A：
+var i;
+for (i = 0; i < 10; i++) {
+	(function (i) {   //声明了10个函数
+		var a = document.createElement('a');
+		a.innerHTML = i + '<br>';
+		a.addEventListener('click', function (e) {
+			e.preventDefault();
+			alert(i);
+		})		
+		document.body.appendChild(a);
+	})(i); 
+}
+
+
+（4）如何理解作用域
+A： 自由变量、作用域链(即自由变量的查找)、闭包的两个场景
+
+
+（5）实际开发中闭包的应用
+A： 
+//封装变量，收敛权限
+function isFirstLoad() {
+	var _list = [];
+	return function (id) {
+		if (_list.indexOf(id)) {
+			return false;
+		} else {
+			_list.push(id);
+			return true;
+		}
+	}
+}
+//使用
+var firstLoad = isFirstLoad();
+firstLoad(10); //true
+firstLoad(10); //false
+firstLoad(20); //true

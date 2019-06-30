@@ -1,0 +1,52 @@
+JavaScript函数、作用域
+被定义一次，可执行和调用多次。
+JS中函数也是对象。
+
+重点：this、arguments、作用域、不同调用方式、不同创建方式
+
+function foo(x,y){ 
+	if(typeof x === 'number' &&
+	   typeof y === 'number'){
+		return x + y;
+	} else {
+		return 0;
+	}
+}
+foo(1,2); //3
+
+直接调用： 			foo();
+对象方法： 			o.method();
+构造器：   			new Foo(); 
+call/apply/bind：   fun.call(0);
+
+函数声明：
+function add(){
+	...
+}
+
+函数表达式：
+① var add = function(){};
+② (function(){})(); //立即执行
+③ return function(){};
+④ var add = function foo(){};
+
+函数声明可以在函数之前调用，函数表达式不可以。
+因为函数和变量的声明会被提前。
+
+new Function() 构造器创建的函数能拿到全局对象，拿不到外层函数对象的局部变量
+
+
+JavaScript this
+① 全局的this  this === window
+② 作为对象方法的函数的this 
+    var o ={ 
+		prop:37,
+		f:function(){return this.prop}
+	}	
+	return o.f(); //37
+	get/set中的this、构造器中的this
+	call、apply中的this会指向传入的对象
+	bind中的this指向传入的对象
+③ JavaScript 函数属性arguments
+	
+

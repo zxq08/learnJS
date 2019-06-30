@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    <title>Validete TypeOf DoubleArray</title>
+    
+</head>
+<body>
+    <script type="text/javascript">   
+        /*
+         * param1 Array 
+         * param2 Array
+         * return true or false
+		 * （1）确认都是数组且长度相等
+		 * （2）根据所有需要判断的类型，统计arr1和arr2中的各种类型数量
+		 * （3）比较各种类型数量是否完全一致，则认为两个数组相似
+         */
+        function arraysSimilar(arr1, arr2){
+			if( !(arr1 instanceof Array) || !(arr2 instanceof Array) ){
+				return false;
+			}
+			if(arr1.length != arr2.length) {
+				return false;
+			}
+			//所有需要判断的类型
+			var typeArrs = ['string','boolean','number','undefined',
+						'null','function','Date','window','Array'];
+			var arr1_Type = [];
+			var arr2_Type = [];
+			for(i=0; i<arr1.length; i++){
+				var t1 = getType(arr1[i]);
+				var t2 = getType(arr2[i]);
+				if(arr1_Type[t1]){arr1_Type[t1]++}
+				else{arr1_Type[t1]=1}
+				if(arr2_Type[t2]){arr2_Type[t2]++}
+				else{arr2_Type[t2]=1}
+			}
+			console.log(arr1_Type);
+			console.log(arr2_Type);
+			
+			for(j=0; j<typeArrs.length; j++){
+				if(arr1_Type[typeArrs[j]] !== arr2_Type[typeArrs[j]]){
+					console.log(false);
+					return false;
+				}
+			}
+			console.log(true);
+			return true;
+				
+        }
+		
+		function getType(v){
+			if(v === null){return 'null'}
+			else if(v instanceof Array){return 'Array'}
+			else if(v instanceof Date){return 'Date'}
+			else if(v === window){return 'window'}
+			else {return typeof v}
+		}
+		
+		
+    </script>
+    <script src="testData.js"></script>
+</body>
+</html>

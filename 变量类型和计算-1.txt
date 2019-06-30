@@ -1,0 +1,38 @@
+值类型和引用类型
+① 值类型
+	var a=100; var b = a; 
+	a = 200;
+	return b;//100
+② 引用类型
+	var a = {age:20};
+	var b = a;
+	b.age = 21;
+	return a.age;//21;  赋值的是指针，节省内存空间
+	
+typeof ：
+① typeof undefined    //undefined
+② typeof 'abc'		   //string
+③ typeof 123 		   //number
+④ typeof true		   //boolean
+⑤ typeof {}		   //object
+⑥ typeof []		   //object
+⑦ typeof null		   //object
+⑧ typeof console.log  //function
+⑨ typeof symbol	   //symbol
+通过symbol创建的变量唯一	
+
+强制类型转换：
+① 字符串拼接
+var b = 100 + '10'; //'10010'
+② ==判断
+100 == '100'        //true
+0 == ''				//true
+nul == undefined	//true
+③ if 判断
+var b=100;
+if(b){}      	    //b转换成true
+④逻辑运算符
+console.log(10 && 0) //10和0转换成boolean
+tips：判断一个变量会被当做true还是false
+		var a =100; console.log(!!a); //强制转换成Boolean
+

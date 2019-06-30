@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>闭包的实际应用</title>
+</head>
+<body>
+<script type="text/javascript">
+	function isFirstLoad() {
+	var _list = [];
+	return function (id) {
+		if (_list.indexOf(id) >= 0) {
+			console.log(false);
+			return false;
+		} else {
+			_list.push(id);
+			console.log(true);
+			return true;
+		}
+	}
+}
+//使用
+var firstLoad = isFirstLoad(); //将return的部分返回赋值给firstLoad
+firstLoad(10); //true
+firstLoad(10); //false
+firstLoad(20); //true
+firstLoad(30); //true
+firstLoad(20); //false
+
+//在 isFirstLoad 不能修改 _list 
+</script>
+</body>
+</html>

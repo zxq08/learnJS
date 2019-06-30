@@ -1,0 +1,113 @@
+JavaScript语句
+block块语句，0~n个语句
+{
+	语句1;
+	语句2;
+	...
+}
+没有块级作用域
+eg:for(var i=0;i<10;i++){}   =    var i=0;  for(;i<10;i++){}
+
+var声明语句
+var a = 1; 
+function foo(){
+	var a=b=1; //相当于创建了全局变量b
+	var c=1,d=1;
+}
+foo();
+console.log(typeof a); //undefined
+console.log(typeof b); //number
+console.log(typeof c); //undefined
+console.log(typeof d); //undefined
+
+try,catch语句(catch和finally必须至少出现一个)，
+throw抛出异常后才会进入接下来的catch
+try(){
+
+}catch(){
+
+}finally{
+
+}
+
+
+function语句
+fd(); //true
+function fd(){}   //可在声明之前调用
+fe(); //typeError
+var fe = function(){};
+
+for...in语句
+1.顺序不确定
+2.enumerable为false时不会出现 //属性描述器
+3.for in 对象属性时受原型链影响 
+	//原型链如果有其他属性属性描述器为true也会参与循环
+var p;
+var obj = {x:1,y:2}
+for(p in obj){}
+
+switch语句
+switch(){
+case 1:
+	...;
+	break;
+case 2:
+	...;
+	break;
+case 3:   //合并case
+case 4:
+    ...;
+	break;
+default:
+	...;
+	break;
+}
+
+循环语句
+while(){}
+do{}while()
+var i; for(i=0;i<n;i++){}
+
+with修改当前作用域
+	注: 让JS引擎优化更难
+		可读性差
+		可被变量定义代替
+		严格模式下被禁用
+with({x:1}){
+	console.log(x);
+}
+with(document.forms[0]){		var form = document.forms[0];
+	console.log(name,value);	console.log(for.name.value);
+}
+
+
+严格模式
+
+修复部分语言的不足，更强的错误检查，增强安全性
+'use strict';
+(1)不允许用with
+(2)不允许未声明的变量被赋值
+(3)arguments变为参数的静态副本
+	!function(a){
+		arguments[0] = 100;
+		console.log(a);  //100
+	}(1);
+	如果(1)的地方最后不传，则返回undefined
+	在严格模式下永远返回1，
+	但如果参数是对象，修改对象的属性，依然会有影响
+	
+delete参数、函数名会报错，而不会返回false
+configurable为false时，delete会报错typeError
+
+(4)重复属性名会报错 {x:1,x:2}
+(5)禁止八进制 0123
+(6)eval、arguments变为关键字，不能作为变量和函数名
+(7)eval独立作用域
+	!function(){
+		'user strict';
+		eval('var evalVal = 2;');
+		console.log(typeof evalVal); 
+		//非严格模式为number
+		//严格模式为undefined
+	}();
+

@@ -1,0 +1,64 @@
+异步和单线程
+一、什么是异步？
+console.log(100);
+setTimeout(function () {
+	console.log(200);
+},1000);
+console.log(300);
+//100 300 200 
+
+同步
+console.log(100);
+alert(200); //确认之前会阻塞执行
+console.log(300);
+
+何时需要异步？
+在可能发生等待的情况
+等待过程中不能像alert一样阻塞运行
+异步使用场景：
+（1）定时任务：setTimeout，setInverval
+（2）网络请求：ajax请求，动态 <img> 加载
+（3）事件绑定
+
+ajax请求示例：
+console.log('start');
+$.get('./data1.json', function () { //jquery
+	console.log(data1);	
+});
+console.log('end');
+
+img加载示例：
+console.log('start');
+var img = document.createElement('img');
+img.onload = function () {
+	console.log('loaded');	
+});
+img.src = '/xxx.png';
+console.log('end');
+
+实例：
+<button id="btn1">test</button>
+<script type="text/javascript">
+console.log('start');
+var btn1 = document.getElementById('btn1');
+btn1.addEventListener('click', function () {
+	console.log('clicked');
+});
+console.log('end');
+</script>
+
+所有的异步会先拿出去不执行
+
+二、单线程
+console.log(100);
+setTimeout(function () {
+	console.log(200);
+});
+console.log(300);
+（1）执行第一步，打印100
+（2）执行setTimeout，传入setTimeout的函数会被暂存起来，不会立即执行（单线程的特点，不能同时做两件事）
+（3）执行最后一行，打印300
+（4）待所有程序执行完，处于空闲状态时，会立马看有没有暂存起来的要执行
+（5）发现暂存起来的setTimeout中的函数无需等待时间，就立即拿过来执行
+
+

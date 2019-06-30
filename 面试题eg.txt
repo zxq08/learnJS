@@ -1,0 +1,6 @@
+JavaScript 中 typeof 返回的类型
+何时用=== 何时用 ==
+window.onload 和 DOMContentLoaded 区别
+JS创建10个<a>标签，点击时弹出对应的序号
+简述如何实现一个模块加载器，实现类似 require.js 的基本功能
+实现数组的随机排序
