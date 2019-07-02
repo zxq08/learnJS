@@ -1,0 +1,49 @@
+DOM操作 Document Object Model 
+一、DOM本质
+DOM的基础数据类型是树
+浏览器把拿到的HTML代码，结构化为一个浏览器可识别并且js可操作的一个模型而已。
+
+二、DOM节点操作
+（1）获取DOM节点
+var div1 = document.getElementById('div1'); //元素
+var divList = document.getElementByTagName('div');//集合
+console.log(divList.length);
+console.log(divList[0]);
+
+var containerList = document.getElementsByClassName('.container');//集合
+var pList = document.querySelectorAll('p'); //集合
+
+（2）prototype
+var pList = document.querySelectorAll('p'); 
+var p = pList[0];
+console.log(p.style.width);//获取样式
+p.style.width = '100px';   //修改样式
+console.log(p.className);  //获取class
+p.className = 'p1';		   //修改class
+
+//获取nodeName 和 nodeType
+console.log(p.nodeName);
+console.log(p.nodeType);
+
+var obj = {x:100, y:200};
+console.log(obj.x);
+
+（3）Attribute
+var pList = document.querySelectorAll('p'); 
+var p = pList[0];
+p.getAttribute('data-name');
+p.setAttribute('data-name','imooc');
+p.getAttribute('style');
+p.setAttribute('style','font-size:30px;');
+
+
+三、DOM结构操作
+（1）新增节点
+var p1 = document.createElement('p');
+div1.appendChild(p1);
+（2）获取父元素
+div1.parentElement
+（3）获取子元素
+div1.childNodes
+（4）删除节点
+div1.remoceChild(child[0]);

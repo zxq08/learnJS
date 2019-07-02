@@ -1,0 +1,28 @@
+BOM操作 Browser Object Model
+一、题目
+（1）检测浏览器的类型
+（2）拆解url的各部分
+（3）
+
+二、知识点
+（1）navigator
+浏览器特性，字符串类型
+var ua = navigator.userAgent
+var isChrome = ua.indexOf('Chrome');
+cnosole.log(isChrome);
+
+（2）screen
+console.log(screen.width);
+console.log(screen.height);
+
+（3）location
+console.log(location.href);
+console.log(location.protocol); //'http:' 'https'
+console.log(location.pathname); //?之后的'/learn/199'
+console.log(location.search);
+console.log(location.hash);
+location.host //域名
+
+（4）history
+history.back();
+history.forward();
